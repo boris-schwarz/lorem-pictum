@@ -1,0 +1,1 @@
+<!--- This file is part of the Lorem Pictum default installation. --->

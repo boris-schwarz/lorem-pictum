@@ -1,0 +1,90 @@
+# ignore CF/lucee web
+**/WEB-INF/**
+**/jakarta/**
+**/subdomains/**
+**/node_modules/**
+
+# ignore live server objects
+/cert/
+/certificates/
+
+# ignore all files starting with ~
+**/~*
+
+# ignore OS generated files
+**/ehthumbs.db
+**/Thumbs.db
+
+# ignore Editor files
+**/.vscode/**
+**/*.sublime-project
+**/*.sublime-workspace
+**/*.komodoproject
+**/*.sass-cache
+**/.cache
+**/.project
+**/.tmproj
+**/*.esproj
+**/nbproject
+*_notes/
+../sftp-config.json
+
+# ignored '.' files and directories
+._*
+.cache
+.DS_Store
+.htaccess
+.project
+.rdsTempFiles
+.sass-cache
+.settings
+.tmproj
+.svn
+
+# ignore log files and databases
+**/*.log
+**/*.sql
+**/*.sqlite
+
+# ignore compiled files
+**/*.com
+**/*.class
+**/*.dll
+**/*.exe
+**/*.o
+**/*.so
+
+# ignore packaged files
+**/*.7z
+**/*.dmg
+**/*.gz
+**/*.iso
+**/*.rar
+**/*.tar
+**/*.zip
+**/*.img
+
+# ignore various
+**/*.diff
+**/*.err
+**/*.orig
+**/*.log
+**/*.rej
+**/*.swo
+**/*.swp
+**/*.pdf
+**/*.ai
+**/*.psd
+**/*.xls
+**/*.xlsx
+**/*.doc
+**/*.docx
+**/*.flv
+**/*.mp4
+**/*.mpeg4
+**/*.mov
+**/*.pack
+**/*.part
+**/*.tif
+**/*.tiff
+**/*.cr2
