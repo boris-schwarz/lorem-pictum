@@ -1,5 +1,6 @@
 component accessors='false' displayname='LoremPictum' output='false' hint='' {
 
+  // default values
   variables.defaults = {
     'width': 320,
     'height': 320,
@@ -8,6 +9,7 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
     'textColor': 'fff'
   };
 
+  // allowed HTML Color Names
   variables.allowedColorCodes = ['black', 'silver', 'gray', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua', 'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black', 'blanchedalmond', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkgrey', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'greenyellow', 'grey', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'navy', 'oldlace', 'olive', 'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'purple', 'rebeccapurple', 'red', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'silver', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'tan', 'teal', 'thistle', 'tomato', 'transparent', 'turquoise', 'violet', 'wheat', 'white', 'whitesmoke', 'yellow', 'yellowgreen'];
 
 
@@ -16,9 +18,9 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
    * @hint initialize component
    * @width The width of the image in pixels
    * @height The height of the image in pixels
-   * @canvasColor The background color of the image in a hexadecimal format
+   * @canvasColor The background color of the image in a hexadecimal format or a HTML Color Name
    * @text The text to be displayed in the image
-   * @textColor The color of the text on the image in a hexadecimal format
+   * @textColor The color of the text on the image in a hexadecimal format or a HTML Color Name
    * @return this
    */
   public component function init(numeric width=variables.defaults.width, numeric height=variables.defaults.height, string canvasColor=variables.defaults.canvasColor, string text=variables.defaults.text, string textColor=variables.defaults.textColor) {
@@ -78,7 +80,7 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
 
   /**
    * @hint Sets the canvasColor of the image
-   * @canvasColor The canvasColor of the image in a hexadecimal format
+   * @canvasColor The canvasColor of the image in a hexadecimal format or a HTML Color Name
    * @return this
    */
   public component function setCanvasColor(required string canvasColor) {
@@ -106,7 +108,7 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
 
   /**
    * @hint Sets the textColor of the image
-   * @textColor The textColor of the image in a hexadecimal format
+   * @textColor The textColor of the image in a hexadecimal format or a HTML Color Name
    * @return this
    */
   public component function setTextColor(required string textColor) {
@@ -235,7 +237,7 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
 
 
   /**
-   * @hint Checks if the color is valid (either HTML Color Code or Hexadecimal)
+   * @hint Checks if the color is valid (either HTML Color Name or Hexadecimal)
    * @color The color to be checked
    */
   private boolean function isValidColor(required string color) {
