@@ -8,6 +8,9 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
     'textColor': 'fff'
   };
 
+  variables.allowedColorCodes = ['black', 'silver', 'gray', 'white', 'maroon', 'red', 'purple', 'fuchsia', 'green', 'lime', 'olive', 'yellow', 'navy', 'blue', 'teal', 'aqua', 'aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black', 'blanchedalmond', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkgrey', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkslategrey', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dimgrey', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'greenyellow', 'grey', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightgrey', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightslategrey', 'lightsteelblue', 'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'navy', 'oldlace', 'olive', 'olivedrab', 'orange', 'orangered', 'orchid', 'palegoldenrod', 'palegreen', 'paleturquoise', 'palevioletred', 'papayawhip', 'peachpuff', 'peru', 'pink', 'plum', 'powderblue', 'purple', 'rebeccapurple', 'red', 'rosybrown', 'royalblue', 'saddlebrown', 'salmon', 'sandybrown', 'seagreen', 'seashell', 'sienna', 'silver', 'skyblue', 'slateblue', 'slategray', 'slategrey', 'snow', 'springgreen', 'steelblue', 'tan', 'teal', 'thistle', 'tomato', 'transparent', 'turquoise', 'violet', 'wheat', 'white', 'whitesmoke', 'yellow', 'yellowgreen'];
+
+
 
   /**
    * @hint initialize component
@@ -79,8 +82,11 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
    * @return this
    */
   public component function setCanvasColor(required string canvasColor) {
-    // TODO: Check if the color is valid
-    variables.canvasColor = arguments.canvasColor;
+    if (isValidColor(arguments.canvasColor)) {
+      variables.canvasColor = arguments.canvasColor;
+    } else {
+      variables.canvasColor = variables.defaults.canvasColor;
+    }
 
     return this;
   }
@@ -104,8 +110,11 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
    * @return this
    */
   public component function setTextColor(required string textColor) {
-    // TODO: Check if the color is valid
-    variables.textColor = arguments.textColor;
+    if (isValidColor(arguments.textColor)) {
+      variables.textColor = arguments.textColor;
+    } else {
+      variables.textColor = variables.defaults.textColor;
+    }
 
     return this;
   }
@@ -203,7 +212,7 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
 
 
   /**
-   * @hint
+   * @hint Delivers the image to the browser
    * @contentDisposition Specifies whether the image should be downloaded or displayed inline
    * @image The image object
    * @return this
@@ -222,6 +231,26 @@ component accessors='false' displayname='LoremPictum' output='false' hint='' {
     cfimage(action='write', destination=local.fileName, source=arguments.image);
     cfheader(name='content-disposition', value='#arguments.contentDisposition#; filename=lorem-ipsum.png');
     cfcontent(type='image/png', file=local.fileName, reset=true, deletefile=true);
+  }
+
+
+  /**
+   * @hint Checks if the color is valid (either HTML Color Code or Hexadecimal)
+   * @color The color to be checked
+   */
+  private boolean function isValidColor(required string color) {
+    // check if color is HTML Color Code
+    if (arrayFindNoCase(variables.allowedColorCodes, arguments.color)) {
+      return true;
+    }
+
+    // check if color is Hexadecimal (3 or 6 digits)
+    if (reFind('^[0-9a-fA-F]{3}$', arguments.color) OR reFind('^[0-9a-fA-F]{6}$', arguments.color)) {
+      return true;
+    }
+
+    // otherwise return false
+    return false;
   }
 
 
