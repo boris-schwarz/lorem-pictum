@@ -40,6 +40,7 @@
 .settings
 .tmproj
 .svn
+.cflintrc
 
 # ignore log files and databases
 **/*.log
